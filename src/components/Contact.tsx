@@ -14,7 +14,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
         >
           <h1 className="text-3xl font-semibold text-green-600 mb-4">
-            ¡Gracias por tu mensaje! 🙌
+            ¡Gracias por tu mensaje!
           </h1>
           <p className="text-gray-700 dark:text-gray-300">
             Te responderé lo antes posible.
@@ -25,12 +25,15 @@ export default function ContactPage() {
   }
 
   return (
+
     <section
       id="contact"
-      className="min-h-[85vh] flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 px-6"
+      className="min-h-[85vh] flex flex-col items-center justify-center 
+  bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 
+  border-t border-gray-200/70 dark:border-gray-700/40 px-6"
     >
       <motion.div
-        className="w-full max-w-lg bg-white/70 dark:bg-gray-900/70 p-8 rounded-2xl shadow-lg backdrop-blur-md"
+        className="w-full max-w-lg bg-white/80 dark:bg-gray-900/70 p-8 rounded-2xl shadow-xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
       >
