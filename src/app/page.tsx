@@ -1,21 +1,48 @@
 import Hero from '../components/Hero';
-import About from '../components/About';
 import Skills from '../components/Skills';
-import Projects from '../components/Projects';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import Navbar from '@/components/Navbar';
+
+// Lazy loading de componentes
+const About = dynamic(() => import('@/components/About'), {
+  loading: () => <div>Cargando...</div>,
+});
+
+const Projects = dynamic(() => import('@/components/Projects'), {
+  loading: () => <div>Cargando proyectos...</div>,
+});
+
+const Contact = dynamic(() => import('@/components/Contact'), {
+  loading: () => <div>Cargando formulario...</div>,
+});
+
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div>Cargando footer...</div>,
+});
 
 export default function Home() {
   return (
-    <main>
+    <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <About />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <About />
+      </Suspense>
+
       <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+
+      <Suspense fallback={<div>Cargando proyectos...</div>}>
+        <Projects />
+      </Suspense>
+
+      <Suspense fallback={<div>Cargando formulario...</div>}>
+        <Contact />
+      </Suspense>
+
+      <Suspense fallback={<div>Cargando footer...</div>}>
+        <Footer />
+      </Suspense>
     </main>
   );
 }
