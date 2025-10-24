@@ -1,3 +1,9 @@
+# *
 User-agent: *
 Allow: /
-Sitemap: https://tudominio.com/sitemap.xml
+
+# Host
+Host: https://portafolio-2026.vercel.app
+
+# Sitemaps
+Sitemap: https://portafolio-2026.vercel.app/sitemap.xml
