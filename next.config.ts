@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
         },
         {
           key: 'Content-Security-Policy',
-          value: "default-src 'self'; img-src 'self' https: data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
+          value: "default-src 'self'; connect-src 'self' https://formspree.io https://api.formspree.io https://*.formspree.io; img-src 'self' https: data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
         },
         {
           key: 'Referrer-Policy',
