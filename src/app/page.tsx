@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 
-// Lazy loading de componentes
+// Lazy Load
 const About = dynamic(() => import('@/components/About'), {
   loading: () => <div>Cargando...</div>,
 });

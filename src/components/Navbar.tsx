@@ -10,9 +10,68 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScrollVisual = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScrollVisual);
+
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+
+  
+    const computeActiveByScroll = () => {
+      if (!sections.length) return;
+      const viewportCenter = window.innerHeight / 2;
+      let closestId = sections[0].id;
+      let minDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+        const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestId = sec.id;
+        }
+      });
+
+      setActive(`#${closestId}`);
+    };
+
+   
+    let observer: IntersectionObserver | null = null;
+    if ('IntersectionObserver' in window && sections.length > 0) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              
+              setActive(`#${entry.target.id}`);
+            }
+          });
+        },
+        {
+          root: null,
+          
+          rootMargin: '-20% 0px -40% 0px',
+          threshold: [0.4, 0.6], 
+        }
+      );
+
+      sections.forEach((section) => observer!.observe(section));
+    } else {
+      
+      window.addEventListener('scroll', computeActiveByScroll, { passive: true });
+     
+      computeActiveByScroll();
+    }
+
+    // cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScrollVisual);
+      if (observer) {
+        sections.forEach((s) => observer!.unobserve(s));
+        observer.disconnect();
+      } else {
+        window.removeEventListener('scroll', computeActiveByScroll);
+      }
+    };
   }, []);
 
   const navItems = [
@@ -49,6 +108,8 @@ const Navbar = () => {
                 ? 'bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-md'
                 : 'text-gray-700 dark:text-gray-200 hover:text-blue-500'
             }`}
+            aria-current={active === item.href ? 'true' : undefined}
+            aria-label={item.label}
           >
             {item.icon}
             <span className="sr-only">{item.label}</span>
@@ -61,7 +122,7 @@ const Navbar = () => {
             )}
           </motion.button>
 
-          {/* Tooltip */}
+          
           <AnimatePresence>
             {hovered === item.href && (
               <motion.span
