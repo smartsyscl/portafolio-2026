@@ -16,7 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jean Pérez - Desarrollador Web Front End",
+  metadataBase: new URL('https://portafolio-2026-delta.vercel.app/'), // Cambia esto por tu dominio real
+  title: {
+    default: "Jean Pérez - Desarrollador Web Front End",
+    template: "%s | Jean Pérez" // Ind Pag
+  },
   description: "Desarrollador Web Front End especializado en crear experiencias digitales atractivas y funcionales. Explora mi portafolio para ver mis proyectos y habilidades en JavaScript, React, Next.js, y más.",
   keywords: [
     "Jean Pérez",
@@ -33,13 +37,48 @@ export const metadata: Metadata = {
     "Diseño Web",
   ],
   authors: [{ name: "Jean Pérez" }],
+  creator: "Jean Pérez",
+  publisher: "Jean Pérez",
   icons: {
     icon: '/favicon.ico',
   },
-  robots:{
+  robots: {
     index: true,
     follow: true,
-  }
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "https://portafolio-2026-delta.vercel.app/",
+    siteName: "Jean Pérez - Desarrollador Web",
+    title: "Jean Pérez - Desarrollador Web Front End",
+    description: "Desarrollador Web Front End especializado en crear experiencias digitales atractivas y funcionales.",
+    images: [
+      {
+        url: "/og-image.png", //
+        width: 1200,
+        height: 630,
+        alt: "Jean Pérez - Desarrollador Web Front End",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@jeandev", 
+    title: "Jean Pérez - Desarrollador Web Front End",
+    description: "Desarrollador Web Front End especializado en crear experiencias digitales atractivas y funcionales.",
+    images: ["/og-image.png"],
+  },
+  verification: {
+    google: "tu-codigo-de-verificacion", // Pendiente al comprar dominio :)
+  },
 };
 
 export default function RootLayout({
