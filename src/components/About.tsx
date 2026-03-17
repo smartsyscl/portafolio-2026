@@ -4,7 +4,7 @@ import { about } from '../data/portfolio';
 
 const About = () => {
   return (
-    <SectionWrapper id="about" className="bg-white dark:bg-gray-900">
+    <SectionWrapper id="about" className="section-surface rounded-3xl my-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">

@@ -7,7 +7,7 @@ Un espacio donde muestro mis proyectos, estilo de trabajo y experiencia en desar
 
 ## 🚀 Tecnologías Principales
 
-- **Next.js 14** → Framework React con renderizado híbrido (SSR/SSG).  
+- **Next.js 15** → Framework React con renderizado híbrido (SSR/SSG).  
 - **Tailwind CSS** → Estilos modernos y responsivos con utilidades personalizadas.  
 - **Framer Motion** → Animaciones suaves y microinteracciones.  
 - **Vercel Hosting** → Despliegue continuo, rápido y seguro.
@@ -20,7 +20,7 @@ Un espacio donde muestro mis proyectos, estilo de trabajo y experiencia en desar
 - **Dark / Light Mode** (según preferencia del sistema).  
 - Secciones dinámicas con animaciones suaves.  
 - Totalmente **responsive**, adaptado para desktop, tablet y mobile.  
-- Integración con **formulario de contacto funcional** (Formspree o EmailJS).  
+- Integración con **formulario de contacto funcional** (Formspree).  
 - Optimización SEO y estructura semántica limpia.  
 
 ---

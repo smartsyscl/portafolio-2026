@@ -14,6 +14,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Abrir perfil de GitHub"
             >
               <Github size={24} />
             </a>
@@ -22,12 +23,14 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Abrir perfil de LinkedIn"
             >
               <Linkedin size={24} />
             </a>
             <a
               href="mailto:jeandsgperez@gmail.com"
               className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Enviar correo a Jean Perez"
             >
               <Mail size={24} />
             </a>

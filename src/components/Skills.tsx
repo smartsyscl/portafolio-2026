@@ -4,7 +4,7 @@ import { skills } from '../data/portfolio';
 
 const Skills = () => {
   return (
-    <SectionWrapper id="skills" className="bg-gray-50 dark:bg-gray-800">
+    <SectionWrapper id="skills" className="section-surface rounded-3xl my-8">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Habilidades

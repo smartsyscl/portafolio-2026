@@ -1,6 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://portafolio-2026.vercel.app'
+
 module.exports = {
-  siteUrl: 'https://portafolio-2026.vercel.app', 
+  siteUrl,
   generateRobotsTxt: true,
   sitemapSize: 7000,
   exclude: ['/404'],
@@ -15,7 +17,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      'https://portafolio-2026.vercel.app/sitemap.xml', 
+      `${siteUrl}/sitemap.xml`,
     ],
     additionalRobotsTxt: `
 # ---------------------------------------------
@@ -27,7 +29,7 @@ module.exports = {
 User-agent: *
 Allow: /
 
-Sitemap: https://portafolio-2026.vercel.app/sitemap.xml
+Sitemap: ${siteUrl}/sitemap.xml
 `,
   },
 

@@ -2,6 +2,10 @@ export interface Project {
   id: number;
   title: string;
   description: string;
+  problem: string;
+  solution: string;
+  role: string;
+  impact: string[];
   techStack: string[];
   liveUrl?: string;
   githubUrl?: string;

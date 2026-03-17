@@ -5,20 +5,21 @@ import { ChevronDown } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 import { useState, useEffect } from 'react';
 
+const GREETINGS = ['Hola', 'Hello', 'Salut', 'Hallo', 'Ciao', 'Olá'];
+
 const Hero = () => {
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const greetings = ['Hola', 'Hello', 'Salut', 'Hallo', 'Ciao', 'Olá'];
-  const [currentGreeting, setCurrentGreeting] = useState(greetings[0]);
+  const [currentGreeting, setCurrentGreeting] = useState(GREETINGS[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentGreeting((prev) => {
-        const currentIndex = greetings.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % greetings.length;
-        return greetings[nextIndex];
+        const currentIndex = GREETINGS.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % GREETINGS.length;
+        return GREETINGS[nextIndex];
       });
     }, 2000); // cambia cada 2 segundos
 
@@ -28,9 +29,19 @@ const Hero = () => {
   return (
     <SectionWrapper id="hero" className="min-h-[100vh] flex items-center justify-center pt-10 md:pt-0">
       <div className="text-center">
+        <motion.div
+          className="inline-flex items-center gap-2 mb-6 rounded-full border border-sky-300/60 bg-white/70 dark:bg-slate-900/60 dark:border-sky-800/60 px-4 py-1.5 text-sm text-slate-700 dark:text-slate-200 backdrop-blur"
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
+          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+          Disponible para nuevos proyectos
+        </motion.div>
+
         <motion.h1
           key={currentGreeting} // 🔹 importante para animar cuando cambia
-          className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-4 transition-colors"
+          className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4 transition-colors"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
@@ -41,7 +52,7 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl text-neutral-800 dark:text-gray-300 mb-8 transition-colors"
+          className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 mb-8 transition-colors"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -52,6 +63,8 @@ const Hero = () => {
         <motion.button
           onClick={scrollToAbout}
           className="relative overflow-hidden text-black font-semibold bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 font-medium rounded-lg text-lg px-6 py-3 text-center me-2 mb-2 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 transition-all duration-300 ease-out"
+          aria-label="Ir a la seccion Acerca de mi"
+          aria-controls="about"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{

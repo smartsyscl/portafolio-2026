@@ -2,15 +2,25 @@
 import { useForm, ValidationError } from "@formspree/react";
 import { motion } from "framer-motion";
 import { HiPaperAirplane } from "react-icons/hi";
+import { useEffect } from "react";
+import { trackEvent } from "@/utils/analytics";
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("mwprjrga");
 
+  useEffect(() => {
+    if (!state.succeeded) return;
+
+    trackEvent("contact_form_submit_success", {
+      form: "formspree",
+    });
+  }, [state.succeeded]);
+
   if (state.succeeded) {
     return (
-      <section className="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <section className="min-h-[80vh] flex items-center justify-center px-6">
         <motion.div
-          className="text-center p-10 rounded-2xl shadow-lg bg-white/70 dark:bg-gray-900/70 backdrop-blur-md"
+          className="text-center p-10 rounded-2xl shadow-lg bg-white/75 dark:bg-gray-900/70 backdrop-blur-md border border-white/50 dark:border-gray-700/60"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -39,13 +49,10 @@ export default function ContactPage() {
   return (
     <section
       id="contact"
-      className="min-h-[85vh] flex flex-col items-center justify-center 
-      bg-gradient-to-b from-gray-50 via-white to-gray-100 
-      dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 
-      border-t border-gray-200/70 dark:border-gray-700/40 px-6"
+      className="min-h-[85vh] flex flex-col items-center justify-center px-6"
     >
       <motion.div
-        className="w-full max-w-lg bg-white/80 dark:bg-gray-900/70 p-10 rounded-2xl shadow-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50"
+        className="w-full max-w-lg section-surface p-10 rounded-2xl shadow-2xl"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

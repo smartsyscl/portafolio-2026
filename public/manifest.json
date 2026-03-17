@@ -2,7 +2,7 @@
   "name": "Jean Pérez - Portafolio",
   "short_name": "JP Portfolio",
   "description": "Portafolio profesional de Jean Pérez - Desarrollador Frontend y Diseñador Web.",
-  "start_url": "https://portafolio-2026-delta.vercel.app/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

@@ -1,13 +1,19 @@
 import type { NextConfig } from "next";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://portafolio-2026.vercel.app";
+const siteHostname = new URL(siteUrl).hostname;
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'portafolio-2026-delta.vercel.app',
+        hostname: siteHostname,
       },
     ],
+  },
+  turbopack: {
+    root: __dirname,
   },
   headers: async () => [
     {
@@ -23,7 +29,7 @@ const nextConfig: NextConfig = {
         },
         {
           key: 'Content-Security-Policy',
-          value: "default-src 'self'; connect-src 'self' https://formspree.io https://api.formspree.io https://*.formspree.io; img-src 'self' https: data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
+          value: "default-src 'self'; connect-src 'self' https://formspree.io https://api.formspree.io https://*.formspree.io; img-src 'self' https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://api.formspree.io https://*.formspree.io;",
         },
         {
           key: 'Referrer-Policy',

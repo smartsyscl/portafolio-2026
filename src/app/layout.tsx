@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from 'next-themes'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://portafolio-2026.vercel.app";
 
 
 const geistSans = Geist({
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portafolio-2026-delta.vercel.app/'), // Cambia esto por tu dominio real
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Jean Pérez - Desarrollador Web Front End",
     template: "%s | Jean Pérez" // Ind Pag
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://portafolio-2026-delta.vercel.app/",
+    url: siteUrl,
     siteName: "Jean Pérez - Desarrollador Web",
     title: "Jean Pérez - Desarrollador Web Front End",
     description: "Desarrollador Web Front End especializado en crear experiencias digitales atractivas y funcionales.",
@@ -76,9 +77,6 @@ export const metadata: Metadata = {
     description: "Desarrollador Web Front End especializado en crear experiencias digitales atractivas y funcionales.",
     images: ["/og-image.png"],
   },
-  verification: {
-    google: "tu-codigo-de-verificacion", // Pendiente al comprar dominio :)
-  },
 };
 
 export default function RootLayout({
@@ -87,11 +85,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className="dark" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>

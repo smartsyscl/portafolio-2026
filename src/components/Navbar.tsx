@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Home, User, FolderGit2, Mail } from 'lucide-react';
+import { Home, User, FolderGit2, Mail, Wrench } from 'lucide-react';
 
 const Navbar = () => {
   const [active, setActive] = useState('#hero');
@@ -77,6 +77,7 @@ const Navbar = () => {
   const navItems = [
     { icon: <Home className="w-5 h-5" />, href: '#hero', label: 'Inicio' },
     { icon: <User className="w-5 h-5" />, href: '#about', label: 'Sobre mí' },
+    { icon: <Wrench className="w-5 h-5" />, href: '#skills', label: 'Skills' },
     { icon: <FolderGit2 className="w-5 h-5" />, href: '#projects', label: 'Proyectos' },
     { icon: <Mail className="w-5 h-5" />, href: '#contact', label: 'Contacto' },
   ];
@@ -92,8 +93,10 @@ const Navbar = () => {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl flex items-center justify-center gap-6 px-6 py-3 
-        ${scrolled ? 'bg-white/70 dark:bg-gray-900/70' : 'bg-white/30 dark:bg-gray-800/30'}`}
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 backdrop-blur-xl border rounded-2xl shadow-xl flex items-center justify-center gap-6 px-6 py-3 
+        ${scrolled
+          ? 'bg-white/85 border-slate-200/80 dark:bg-slate-900/85 dark:border-slate-700/70'
+          : 'bg-white/55 border-white/70 dark:bg-slate-800/50 dark:border-slate-700/60'}`}
     >
       {navItems.map((item) => (
         <div key={item.href} className="relative flex flex-col items-center">
