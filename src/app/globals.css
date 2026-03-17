@@ -2,6 +2,22 @@
 :root {
   --background: #060b16;
   --foreground: #e5edf9;
+  --surface-1: rgba(15, 23, 42, 0.78);
+  --surface-2: rgba(15, 23, 42, 0.58);
+  --border-soft: rgba(71, 85, 105, 0.62);
+  --accent-500: #2563eb;
+  --accent-400: #60a5fa;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
 }
 
 @theme inline {
@@ -53,10 +69,61 @@ body::after {
 }
 
 .section-surface {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.74) 0%, rgba(15, 23, 42, 0.58) 100%);
-  border: 1px solid rgba(71, 85, 105, 0.52);
+  background: linear-gradient(135deg, var(--surface-1) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border-soft);
   backdrop-filter: blur(8px);
   box-shadow: 0 28px 45px -35px rgba(2, 6, 23, 0.9);
+}
+
+.ui-h1 {
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.ui-h2 {
+  font-size: clamp(1.5rem, 2.2vw, 1.95rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.ui-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.ui-label {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.ui-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+
+.space-stack-2 > * + * {
+  margin-top: var(--space-2);
+}
+
+.space-stack-4 > * + * {
+  margin-top: var(--space-4);
+}
+
+.space-stack-6 > * + * {
+  margin-top: var(--space-6);
+}
+
+.space-section {
+  padding-block: var(--space-10);
 }
 
 @keyframes driftOrb {
@@ -97,6 +164,6 @@ body::after {
 }
 
 :focus-visible {
-  outline: 3px solid #2563eb;
+  outline: 3px solid var(--accent-500);
   outline-offset: 2px;
 }

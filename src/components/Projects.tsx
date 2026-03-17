@@ -3,46 +3,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useMemo, useState } from 'react';
 import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 import { projects } from '../data/portfolio';
 import { trackEvent } from '@/utils/analytics';
+import { Body, ButtonLink, H2 } from '@/components/ui';
 
 const trimText = (text: string, maxChars: number) =>
   text.length > maxChars ? `${text.slice(0, maxChars).trim()}...` : text;
 
-const normalizeTech = (value: string) => value.trim().toLowerCase();
-
-interface FilterOption {
-  id: string;
-  label: string;
-}
-
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filters = useMemo<FilterOption[]>(() => {
-    const uniqueTech = new Set<string>();
-    projects.forEach((project) => {
-      project.techStack.forEach((tech) => uniqueTech.add(tech));
-    });
-
-    return [
-      { id: 'all', label: 'Todos' },
-      ...Array.from(uniqueTech)
-        .slice(0, 8)
-        .map((tech) => ({ id: normalizeTech(tech), label: tech })),
-    ];
-  }, []);
-
-  const visibleProjects = useMemo(() => {
-    if (activeFilter === 'all') return projects;
-    return projects.filter((project) =>
-      project.techStack.some((tech) => normalizeTech(tech) === activeFilter)
-    );
-  }, [activeFilter]);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -61,29 +31,12 @@ const Projects = () => {
   return (
     <SectionWrapper id="projects" className="section-surface rounded-3xl my-8">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-3">
+        <H2 className="mb-3">
           Proyectos
-        </h2>
-        <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto">
+        </H2>
+        <Body className="text-base md:text-lg max-w-2xl mx-auto">
           Una seleccion de casos reales con foco en producto, experiencia de usuario y resultado.
-        </p>
-      </div>
-
-      <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
-        {filters.map((filter) => (
-          <button
-            key={filter.id}
-            type="button"
-            onClick={() => setActiveFilter(filter.id)}
-            className={`rounded-full border px-3.5 py-1.5 text-xs md:text-sm font-medium transition-all ${
-              activeFilter === filter.id
-                ? 'border-blue-400/70 bg-blue-500/20 text-blue-200'
-                : 'border-slate-600/70 bg-slate-900/65 text-slate-300 hover:border-slate-500 hover:text-slate-200'
-            }`}
-          >
-            {filter.label}
-          </button>
-        ))}
+        </Body>
       </div>
 
       <motion.div
@@ -93,7 +46,7 @@ const Projects = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
       >
-        {visibleProjects.map((project) => (
+        {projects.map((project) => (
           <motion.article
             key={project.id}
             variants={itemVariants}
@@ -185,25 +138,21 @@ const Projects = () => {
         ))}
       </motion.div>
 
-      {visibleProjects.length === 0 && (
-        <p className="mt-6 text-center text-sm text-slate-300">
-          No hay proyectos para este filtro por ahora.
-        </p>
-      )}
-
       <div className="mt-10 rounded-2xl border border-slate-700/80 bg-slate-900/60 p-6 md:p-7 text-center">
         <p className="text-lg font-semibold text-slate-100">
-          Estoy disponible para nuevos desafios frontend y full stack.
+          Buscas un frontend solido, rapido y orientado a conversion.
         </p>
         <p className="text-slate-300 mt-2">
-          Si quieres una colaboracion profesional, revisa mis proyectos y escribeme desde la seccion de contacto.
+          Colaboro con equipos y clientes para construir productos web escalables, con foco en experiencia de usuario y resultados de negocio.
         </p>
-        <a
+        <ButtonLink
           href="#contact"
-          className="inline-flex mt-5 items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-white font-medium hover:bg-blue-500 transition-colors"
+          variant="primary"
+          size="md"
+          className="mt-5"
         >
-          Hablemos de tu proyecto
-        </a>
+          Agenda una conversacion
+        </ButtonLink>
       </div>
     </SectionWrapper>
   );

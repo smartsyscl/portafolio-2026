@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { HiPaperAirplane } from "react-icons/hi";
 import { useEffect } from "react";
 import { trackEvent } from "@/utils/analytics";
+import { Button, H2, Input, Label, Textarea } from "@/components/ui";
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("mwprjrga");
@@ -26,7 +27,7 @@ export default function ContactPage() {
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <motion.h1
-            className="text-3xl font-semibold text-green-600 mb-4"
+            className="ui-h2 text-green-400 mb-4"
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -58,83 +59,59 @@ export default function ContactPage() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-extrabold text-center text-gray-900 dark:text-white mb-8">
+        <H2 className="text-center mb-8">
           Hablemos de tu proyecto
-        </h2>
+        </H2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <motion.div whileHover={{ scale: 1.02 }}>
-            <label
-              htmlFor="name"
-              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
-            >
+            <Label htmlFor="name" className="block mb-1.5">
               Nombre
-            </label>
-            <input
+            </Label>
+            <Input
               id="name"
               type="text"
               name="name"
               required
-              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent 
-              text-gray-900 dark:text-white placeholder-gray-400 
-              focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 outline-none transition-all"
               placeholder="Tu nombre completo"
             />
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.02 }}>
-            <label
-              htmlFor="email"
-              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
-            >
+            <Label htmlFor="email" className="block mb-1.5">
               Correo electrónico
-            </label>
-            <input
+            </Label>
+            <Input
               id="email"
               type="email"
               name="email"
               required
-              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent 
-              text-gray-900 dark:text-white placeholder-gray-400 
-              focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 outline-none transition-all"
               placeholder="nombre@correo.com"
             />
             <ValidationError prefix="Email" field="email" errors={state.errors} />
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.02 }}>
-            <label
-              htmlFor="message"
-              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
-            >
+            <Label htmlFor="message" className="block mb-1.5">
               Mensaje
-            </label>
-            <textarea
+            </Label>
+            <Textarea
               id="message"
               name="message"
               rows={5}
               required
-              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent 
-              text-gray-900 dark:text-white placeholder-gray-400 
-              focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 outline-none transition-all resize-none"
+              className="resize-none"
               placeholder="Cuéntame un poco sobre tu proyecto..."
             />
             <ValidationError prefix="Message" field="message" errors={state.errors} />
           </motion.div>
 
-          <motion.button
-            type="submit"
-            disabled={state.submitting}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full flex items-center justify-center gap-2 py-3 
-            bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 
-            text-white font-semibold rounded-lg shadow-md hover:shadow-xl 
-            transition-all duration-300 disabled:opacity-50"
-          >
-            {state.submitting ? "Enviando..." : "Enviar mensaje"}
-            {!state.submitting && <HiPaperAirplane className="text-lg rotate-45" />}
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <Button type="submit" disabled={state.submitting} className="w-full">
+              {state.submitting ? "Enviando..." : "Enviar mensaje"}
+              {!state.submitting && <HiPaperAirplane className="text-lg rotate-45" />}
+            </Button>
+          </motion.div>
         </form>
       </motion.div>
     </section>

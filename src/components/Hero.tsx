@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui';
 
 const GREETINGS = ['Hola', 'Hello', 'Salut', 'Hallo', 'Ciao', 'Olá'];
 
@@ -41,14 +42,14 @@ const Hero = () => {
 
         <motion.h1
           key={currentGreeting} // 🔹 importante para animar cuando cambia
-          className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4 transition-colors"
+          className="ui-h1 text-slate-100 mb-4 transition-colors"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.8 }}
         >
           {currentGreeting}, soy{' '}
-          <span className="text-blue-700 dark:text-blue-400">Jean Pérez</span>
+          <span className="text-blue-400">Jean Pérez</span>
         </motion.h1>
 
         <motion.p
@@ -60,30 +61,25 @@ const Hero = () => {
           Desarrollador Web Front End
         </motion.p>
 
-        <motion.button
-          onClick={scrollToAbout}
-          className="relative overflow-hidden text-black font-semibold bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 font-medium rounded-lg text-lg px-6 py-3 text-center me-2 mb-2 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 transition-all duration-300 ease-out"
-          aria-label="Ir a la seccion Acerca de mi"
-          aria-controls="about"
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{
             scale: 1.05,
-            boxShadow: '0px 4px 20px rgba(255, 150, 150, 0.4)',
+            boxShadow: '0px 8px 24px rgba(37, 99, 235, 0.28)',
           }}
           transition={{ duration: 0.3 }}
+          className="inline-block"
         >
-          <span className="relative z-10">Conoce Más</span>
-          <motion.span
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0"
-            initial={{ x: '-100%' }}
-            whileHover={{
-              opacity: 1,
-              x: '100%',
-              transition: { duration: 0.8, ease: 'easeOut' },
-            }}
-          />
-        </motion.button>
+          <Button
+            onClick={scrollToAbout}
+            size="lg"
+            aria-label="Ir a la seccion Acerca de mi"
+            aria-controls="about"
+          >
+            Conoce mas
+          </Button>
+        </motion.div>
 
         <motion.div
           className="mt-12 cursor-pointer"

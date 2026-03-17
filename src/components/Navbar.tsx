@@ -95,8 +95,8 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 backdrop-blur-xl border rounded-2xl shadow-xl flex items-center justify-center gap-6 px-6 py-3 
         ${scrolled
-          ? 'bg-white/85 border-slate-200/80 dark:bg-slate-900/85 dark:border-slate-700/70'
-          : 'bg-white/55 border-white/70 dark:bg-slate-800/50 dark:border-slate-700/60'}`}
+          ? 'bg-slate-900/85 border-slate-600/70'
+          : 'bg-slate-900/65 border-slate-700/70'}`}
     >
       {navItems.map((item) => (
         <div key={item.href} className="relative flex flex-col items-center">
@@ -108,8 +108,8 @@ const Navbar = () => {
             whileTap={{ scale: 0.9 }}
             className={`relative p-3 rounded-xl transition-colors duration-200 ${
               active === item.href
-                ? 'bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-md'
-                : 'text-gray-700 dark:text-gray-200 hover:text-blue-500'
+                ? 'bg-gradient-to-tr from-blue-500 to-indigo-500 text-white shadow-md'
+                : 'text-slate-300 hover:text-blue-300'
             }`}
             aria-current={active === item.href ? 'true' : undefined}
             aria-label={item.label}
@@ -133,7 +133,7 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 5 }}
                 transition={{ duration: 0.2 }}
-                className="absolute -top-8 px-2 py-1 text-xs rounded-md bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900 shadow-md"
+                className="absolute -top-8 px-2 py-1 text-xs rounded-md bg-slate-800 text-slate-100 shadow-md"
               >
                 {item.label}
               </motion.span>
